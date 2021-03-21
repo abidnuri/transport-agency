@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router';
 import { createUserWithEmailAndPassword, SignInUserWithEmailAndPassword, googleSignIn, initializeSignIn, updateUserInfo } from './ManageLogin';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const SignIn = () => {
     initializeSignIn();
@@ -37,7 +37,7 @@ const SignIn = () => {
             .then(res => {
                 handleResponse(res, true)
             })
-    }
+    };
 
     const handleSubmit = (event) => {
         if (newUser && user.name && user.email && user.password) {
@@ -95,15 +95,15 @@ const SignIn = () => {
                                     newUser &&
                                     <>
                                         <Form.Group controlId="formBasicName">
-                                            <input onBlur={handleBlur} className="form-control" type="text" placeholder="User Name Must Be 4 Character" required />
+                                            <input onBlur={handleBlur} className="form-control" type="text" name="name" placeholder="User Name Must Be 4 Character" required />
                                         </Form.Group>
                                     </>
                                 }
                                 <Form.Group controlId="formBasicEmail">
-                                    <input onBlur={handleBlur} className="form-control" type="email" placeholder="Email: Ex:example@mail.com" />
+                                    <input onBlur={handleBlur} className="form-control" type="email" name="email" placeholder="Email: Ex:example@mail.com" />
                                 </Form.Group>
                                 <Form.Group controlId="formBasicPassword">
-                                    <input className="form-control" type="password" placeholder="Minimum 6 Char with numbers" />
+                                    <input onBlur={handleBlur} className="form-control" type="password" name="password" placeholder="Minimum 6 Char with numbers" />
                                 </Form.Group>
                                 <Button variant="danger" size="md" block type="submit">{newUser ? 'Create an account' : 'Signin'}</Button>
                                 <p>
@@ -112,7 +112,7 @@ const SignIn = () => {
                                         {newUser ? ' Signin' : ' Create an account'}
                                     </span>
                                 </p>
-                                <Button onClick={handleGoogleSignIn} variant="success" size="sm" >
+                                <Button onClick={handleGoogleSignIn} variant="success" size="sm" type="submit" >
                                     <FontAwesomeIcon icon={faGoogle} />
                                     Login With Google
                                 </Button>

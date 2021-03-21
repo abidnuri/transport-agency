@@ -3,6 +3,7 @@ import "firebase/auth";
 import firebaseConfig from "./firebase.config";
 
 
+
 export const initializeSignIn = () =>
 {
     if (!firebase.apps.length)
@@ -87,7 +88,7 @@ export const updateUserInfo = (name) =>
         displayName: name,
     }).then(() =>
     {
-        console.log('user name updated successfully');
+        console.log('your name updated successfully');
     }).catch(error =>
     {
         console.log(error);
