@@ -1,57 +1,61 @@
+import React, { createContext, useState } from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header/Header';
-import Home from './components/Home/Home';
-import Footer from './components/Footer/Footer';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route, Link
 } from "react-router-dom";
-import NoMatch from './components/NoMatch/NoMatch';
-import Login from './components/Login/Login';
-import VehicleDetails from './components/VehicleDetails/VehicleDetails';
-import { createContext, useState } from 'react';
+import Blog from './components/Blog/Blog';
+import Contact from './components/Contact/Contact';
+import Home from './components/Home/Home';
+import Destination from './components/Destination/Destination';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Header from './components/Header/Header';
+import NotMatch from './components/NotMatch/NotMatch';
+import FinalDestination from './components/FinalDestination/FinalDestination';
+import SignIn from './components/SignIn/SignIn';
+import Footer from './components/Footer/Footer'
 
-export const userContext = createContext();
+
+export const UserContext = createContext();
 
 
-function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
+function App(props) {
+  const [loggedinUser, setLoggedinUser] = useState({});
   return (
-    <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <p>Logged in User: {loggedInUser.name}</p>
-      <Router><Header />
+    <UserContext.Provider value={[loggedinUser, setLoggedinUser]}>
+      <Router>
+        <Header></Header>
         <Switch>
-          <PrivateRoute exact path="/">
+          <Route exact path="/">
             <Home />
-          </PrivateRoute>
+          </Route>
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/destination">
-            <Home />
-          </Route>
           <Route path="/blog">
-            <Home />
+            <Blog />
           </Route>
           <Route path="/contact">
-            <Home />
+            <Contact />
           </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/details">
-            <VehicleDetails />
+          <PrivateRoute path="/destination/:id">
+            <Destination />
+          </PrivateRoute >
+          <PrivateRoute path="/finalDestination/:id">
+            <FinalDestination />
+          </PrivateRoute >
+          <Route path="/signin">
+            <SignIn />
           </Route>
           <Route path="*">
-            <NoMatch />
+            <NotMatch />
           </Route>
-        </Switch><Footer />
+        </Switch>        
       </Router>
-    </userContext.Provider>
+      <Footer />
+    </UserContext.Provider>
   );
 }
 
