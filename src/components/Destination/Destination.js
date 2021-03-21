@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import map from '../../images/Map.png';
 import rideDataOne from '../Data/DataOne';
+import Map from '../Map/Map'
 
 const Destination = (props) => {
     const { id } = useParams();
@@ -31,7 +31,7 @@ const Destination = (props) => {
                 </Form>
             </Col>
             <Col md={8}>
-                <img className="img-fluid" src={map} alt="" />
+                <Map></Map>
             </Col>
         </Row>
     </Container>
